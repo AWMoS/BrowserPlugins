@@ -1,0 +1,22 @@
+{
+  "acts":[
+    {
+      "Xpath":"//*[@id=\"n-contents\"]/a",
+      "description":"CLICK",
+      "actionID":"",
+      "Priority":0,
+      "previousActions":[
+
+      ]
+    },
+    {
+      "Xpath":"//*[@id=\"portal\"]/tbody/tr[2]/td/ul[17]/li/a[1]",
+      "description":"CLICK",
+      "actionID":"",
+      "Priority":0,
+      "previousActions":[
+
+      ]
+    }
+  ]
+}
