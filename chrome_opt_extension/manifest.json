@@ -1,0 +1,28 @@
+{
+  "name": "Chrome Optimization",
+  "version": "0.1",
+  "description": "Optimize Chrome testing.",
+  "permissions": ["browsingData","tabs","webRequest","<all_urls>","alarms","webNavigation"],
+  "background": {
+    "scripts": ["jquery-2.2.1.min.js","background.js"]
+  },
+  "commands": {
+    "execute-log": {
+      "suggested_key": {
+        "default": "Alt+Y"
+      },
+      "description": "Execute log."
+    }
+  },
+  "content_scripts":[
+      {
+        "js":["Helper.js","XPathFunctions.js","jquery-2.2.1.min.js","actions.js"],
+        "matches":["<all_urls>"],
+        "run_at": "document_start"
+      }
+    ],
+  "web_accessible_resources": [
+    "ActionQueue.json"
+    ],
+  "manifest_version": 2
+}
