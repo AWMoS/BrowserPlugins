@@ -23,7 +23,6 @@ chrome.commands.onCommand.addListener(function(command) {
   console.log('Command:', command);
   $.getJSON("ActionQueue.json", function(json) {
     actions = json; 
-    clearCache();
     chrome.tabs.query({currentWindow: true, active : true},function(tabs){
       safeState(parseActions, tabs[0].id);
     });
@@ -66,6 +65,7 @@ function parseActions(tabId){
       }
       sendAction(tabId, action);
     }else if(nextAction.description.includes("LOAD")){
+      clearCache();
       chrome.tabs.update(tabId, {url: nextAction.URL}, function(tab){
         safeState(parseActions, tabId);
       });
