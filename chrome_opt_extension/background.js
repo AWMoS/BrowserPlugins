@@ -115,9 +115,7 @@ function isSafe(){
  */
 
 function clearCache(){
-  var millisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
-  var oneWeekAgo = (new Date()).getTime() - millisecondsPerWeek;
-  chrome.browsingData.removeCache({"since": oneWeekAgo});
+  chrome.browsingData.removeCache();
 };
 
 /**

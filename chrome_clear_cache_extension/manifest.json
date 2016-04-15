@@ -2,7 +2,7 @@
   "name": "Clear-Cache",
   "version": "0.1",
   "description": "Clear browser's cache.",
-  "permissions": ["browsingData"],
+  "permissions": ["browsingData", "tabs"],
   "commands": {
     "clear-cache": {
       "suggested_key": {
