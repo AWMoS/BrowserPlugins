@@ -110,12 +110,10 @@ function isSafe(){
 /**
  * Clear chrome cache from date. 
  * 
- * Default date is set to 1 week prior to call.
- *
  */
 
 function clearCache(){
-  chrome.browsingData.removeCache();
+  chrome.browsingData.removeCache({});
 };
 
 /**
