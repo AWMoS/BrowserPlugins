@@ -92,11 +92,11 @@ function safeState(callback,tabId){
     if(!isSafe()){
       setTimeout(function(){
         safeState(callback,tabId);
-      },250);
+      },10);
     }else{
       callback(tabId);
     }
-  },250);
+  },225);
 }
 
 /**
@@ -109,7 +109,7 @@ function isSafe(){
 
 /**
  * Clear chrome cache from date. 
- * 
+ *
  */
 
 function clearCache(){
