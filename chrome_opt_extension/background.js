@@ -23,7 +23,7 @@ chrome.commands.onCommand.addListener(function(command) {
   console.log('Command:', command);
   $.getJSON("ActionQueue.json", function(json) {
     actions = json; 
-    chrome.tabs.query({currentWindow: true, active : true},function(tabs){
+    chrome.tabs.query({active: true, currentWindow: true},function(tabs){
       safeState(parseActions, tabs[0].id);
     });
   });
@@ -56,7 +56,7 @@ function sendAction(tabId, action){
 function parseActions(tabId){
   var nextAction = actions.shift();
   if((nextAction !== undefined)){
-    if(nextAction.description.includes("CLICK")){
+    if(typeof nextAction.description != 'undefined' && nextAction.description.includes("CLICK")){
       var action = {
         "function": "actionClick",
         "functionArgs": [
@@ -64,16 +64,18 @@ function parseActions(tabId){
         ]
       }
       sendAction(tabId, action);
-    }else if(nextAction.description.includes("LOAD")){
+    }else if(typeof nextAction.description != 'undefined' && nextAction.description.includes("LOAD")){
       clearCache();
       chrome.tabs.update(tabId, {url: nextAction.URL}, function(tab){
         safeState(parseActions, tabId);
       });
-    }else if(nextAction.description.includes("FIELD")){
+    }else{
       var action = {
         "function": "actionFieldFilling",
         "functionArgs": [
-          nextAction.Xpath
+          nextAction.field.XPath,
+          nextAction.field.value,
+          nextAction.field.isselected
         ]
       }
       sendAction(tabId, action);

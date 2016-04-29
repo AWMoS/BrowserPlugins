@@ -23,15 +23,12 @@ function actionClick(args){
  * @param {Object} args
  */
 
-function actionFieldFilling(args){
-  var actions = args;
-  for(var action of actions){
-    elem = document.getElementById(action.id);
-    
-    if(elem.type === "checkbox" || elem.type === "radio"){
-      elem.checked = JSON.parse(action.value.toLowerCase());
-    }else{
-      elem.value = action.value;
-    }
+function actionFieldFilling(args){ 
+  var elem = findElementsUsingXPath(args[0]);
+  
+  if(elem.type === "checkbox" || elem.type === "radio"){
+    elem.checked = args[2];
+  }else{
+    elem.value = args[1];
   }
 };
